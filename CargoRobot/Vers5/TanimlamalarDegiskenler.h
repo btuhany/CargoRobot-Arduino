@@ -2,7 +2,13 @@
 //YUK TARA
 float minYukMesafesi = 5;
 float maxYukMesafesi = 60;
+//YUKE ILERLE
+float maxDurmaMesafesi = 7;
 //------------------PINLER & SABITLER--------------------
+//led gostergeler
+const int led1 = 27;
+const int led2 = 14;
+const int led3 = 12;
 //ultrasonik
 const int trigPin = 15;
 const int echoPin  = 36;
@@ -22,15 +28,11 @@ float distanceCm3;
 
 
 //motorlar
-const int tekerlekBirA = 13;
-const int tekerlekBirB = 12;
-const int tekerlekIkiA = 14;
-const int tekerlekIkiB = 27;
-const int tekerlekUcA = 26;
-const int tekerlekUcB = 25;
-const int tekerlekDortA = 33;
-const int tekerlekDortB = 32;
-const int tekerlekAnalogPin1 = 4;    //sag
-const int tekerlekAnalogPin2 = 16;   // arka
-const int tekerlekAnalogPin3 = 2;  // sol
-const int tekerlekAnalogPin4 = 0;  
+const int tekerlekSagA = 32;
+const int tekerlekSagB = 33;
+
+const int tekerlekSolA = 25;
+const int tekerlekSolB = 26;
+
+const int tekerlekSagAnalogPin = 4;    //sag
+const int tekerlekSolAnalogPin = 16;   // arka

@@ -1,13 +1,13 @@
 #include <FiniteStateMachine.h>
 #include "TanimlamalarDegiskenler.h";
-// State YUKEYAKLAS = State(yukYaklas);
+State YUKEYAKLAS = State(yukeYaklas);
 // State YUKUAL = State(yukAl);
 // State YUKUGOTUR = State(yukGotur);
 // State YUKUBIRAK = State(yukBirak);
 State BASLA = State(basla);
 State YUKTARA = State(yukTara);
 State BEKLE = State(bekle);
-State TILERLE = State(tilerle);
+
 State TDUR = State(tdur);
 // State UZAKLAS = State(uzaklas);
 FSM Robot = FSM(BASLA);
@@ -20,7 +20,7 @@ uint8_t ultrasonikState = CALIS;
 
 
 void setup() {
-  pinMode(23,OUTPUT);
+  ledGostergeTanimla();
   motorPinTanimla();
   ultrasonikPinTanimla();
   Serial.begin(9600);
@@ -31,11 +31,9 @@ void loop() {
   // if(ultrasonikState == CALIS)
   //   ultrasonikSensorOku();
   
+    ledDebug();  
 
- 
-      
-
-  Robot.update();
+  //Robot.update();
 }
 void basla()
 {
@@ -44,62 +42,74 @@ void basla()
 }
 void yukTara()
 {
-  if(motorState != YUKTARA)
+  //bir kere yapılacak islemler
+  if(motorState != DON)
   {
-    motorState = YUKTARA;
+    motorState = DON;
     motorDurdur();
     motorSagaDon();
   }
-
+  //update
   ultrasonikSensorOku();
   if(distanceCm>minYukMesafesi && distanceCm <maxYukMesafesi && distanceCm>0)   //distanceCm+distanceCm2+distanceCm3>3
   {
-    digitalWrite(23,HIGH);
-    Robot.transitionTo(TILERLE);
+    //ledYak(0);
+    motorDurdur();
+    delay(1200);
+    Robot.transitionTo(YUKEYAKLAS);
   }
   else
   {
-    digitalWrite(23,LOW);
+    //ledSondur(0);
   }
 
 }
 
 void bekle()
 {
-  if(distanceCm>10 && distanceCm <90 &&distanceCm+distanceCm2+distanceCm3>1)
-  {
-    digitalWrite(23,HIGH);
-    Robot.transitionTo(TILERLE);
-  }
-  else
-  {
-    digitalWrite(23,LOW);
-  }
+  // if(distanceCm>10 && distanceCm <90 &&distanceCm+distanceCm2+distanceCm3>1)
+  // {
+  //   digitalWrite(23,HIGH);
+
+  //   //Robot.transitionTo(TILERLE);
+  // }
+  // else
+  // {
+  //   digitalWrite(23,LOW);
+  // }
   
 }
-void tilerle()
-{
-  if(motorState != ILERLE)
-  {
-    motorState = ILERLE;
-    motorDurdur();
-    motorIlerle();
-  }
-  // if(distanceCm2<20)
+void yukeYaklas(){
+
+  //if(motorState != YUKEYAKLAS)
   // {
-    
-  //   Robot.transitionTo(TDUR);
+  //   motorState = YUKEYAKLAS;
+  //   motorDurdur();
+  //   motorIlerle();
   // }
-  if(distanceCm2 <10 || distanceCm3 <10 && distanceCm+distanceCm2+distanceCm3>1)
+  ultrasonikSensorOku();
+  if(distanceCm2<20)
   {
-      digitalWrite(23,LOW);
-      Robot.transitionTo(TDON);
+    Robot.transitionTo(TDUR);
   }
-  else if(distanceCm<10)
+  if((distanceCm2 <10 || distanceCm3 <10 )&& distanceCm2+distanceCm3>1)
   {
-     Robot.transitionTo(BEKLE);
+    motorDurdur();
+    motorGeriGit();
+    delay(2000);
+    Robot.transitionTo(YUKTARA);
   }
 }
+// {
+//  
+//   //update
+
+
+//   else if(distanceCm < maxDurmaMesafesi)
+//   {
+//      //renk sensoru calistir
+//   }
+// }
 void tdur()
 {
   if(motorState != DUR)
@@ -107,6 +117,8 @@ void tdur()
     motorState = DUR;
     motorDurdur();
   }
+  delay(5000);
+    Robot.transitionTo(YUKTARA);
   //         if(distanceCm2<60 && distanceCm2 >15 && distanceCm2 != 0)
   //         {
   //           digitalWrite(23,HIGH);

@@ -44,3 +44,12 @@ void ultrasonikSensorOlcum3()
       duration3 = pulseIn(echoPin3, HIGH,30000ul);
       distanceCm3 = duration3 * SOUND_SPEED/2;  
 }
+void ultrasonikDebug()
+{
+  Serial.print("Birinci sensor: ");
+  Serial.println(distanceCm);
+  Serial.print("İkinci sensor: ");
+  Serial.println(distanceCm2);
+  Serial.print("Ucuncu sensor: ");
+  Serial.println(distanceCm3);
+}

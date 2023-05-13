@@ -1,95 +1,82 @@
 
 void motorPinTanimla()
 {
-  pinMode(tekerlekBirA, OUTPUT);
-  pinMode(tekerlekBirB, OUTPUT);
+  pinMode(tekerlekSagA, OUTPUT);
+  pinMode(tekerlekSagB, OUTPUT);
 
-  pinMode(tekerlekIkiA, OUTPUT);
-  pinMode(tekerlekIkiB, OUTPUT);
+  pinMode(tekerlekSolA, OUTPUT);
+  pinMode(tekerlekSolB, OUTPUT);
 
-  pinMode(tekerlekUcA, OUTPUT);
-  pinMode(tekerlekUcB, OUTPUT);
-
-  pinMode(tekerlekDortA, OUTPUT);
-  pinMode(tekerlekDortB, OUTPUT);
-
-  pinMode(tekerlekAnalogPin1, OUTPUT);
-  pinMode(tekerlekAnalogPin2, OUTPUT);
-  pinMode(tekerlekAnalogPin3, OUTPUT);
-  pinMode(tekerlekAnalogPin4, OUTPUT);
+  pinMode(tekerlekSolAnalogPin, OUTPUT);
+  pinMode(tekerlekSagAnalogPin, OUTPUT);
 }
 void motorDurdur()
 {
-  digitalWrite(tekerlekBirA, LOW);
-  digitalWrite(tekerlekBirB, LOW);
-   digitalWrite(tekerlekIkiA, LOW);
-   digitalWrite(tekerlekIkiB, LOW);
-   digitalWrite(tekerlekUcA, LOW);
-   digitalWrite(tekerlekUcB, LOW);
-  digitalWrite(tekerlekDortA, LOW);
-  digitalWrite(tekerlekDortB, LOW);
+  digitalWrite(tekerlekSagA, LOW);
+  digitalWrite(tekerlekSagB, LOW);
+
+  digitalWrite(tekerlekSolA, LOW);
+  digitalWrite(tekerlekSolB, LOW);
 }
 void motorIlerle()
 {
-  analogWrite(tekerlekAnalogPin1, 180);
-  //analogWrite(tekerlekAnalogPin2, 255);
-   analogWrite(tekerlekAnalogPin3, 180);
-  //analogWrite(tekerlekAnalogPin4, 255);
+  analogWrite(tekerlekSolAnalogPin, 180);
+   analogWrite(tekerlekSagAnalogPin, 180);
 
-  digitalWrite(tekerlekBirA,HIGH);   //saat yonu
-  digitalWrite(tekerlekBirB,LOW);
-  // digitalWrite(tekerlekIkiA,HIGH);
-  // digitalWrite(tekerlekIkiB, LOW);
-  digitalWrite(tekerlekUcB,HIGH);  // saat yonu tersi
-  digitalWrite(tekerlekUcA, LOW);
-  // digitalWrite(tekerlekDortB,HIGH);
-  // digitalWrite(tekerlekDortA, LOW);
+  digitalWrite(tekerlekSagA,HIGH);   //saat yonu
+  digitalWrite(tekerlekSagB,LOW);
+
+  digitalWrite(tekerlekSolB,HIGH);  // saat yonu tersi
+  digitalWrite(tekerlekSolA, LOW);
+
 }
 void motorGeriGit()
 {
-  analogWrite(tekerlekAnalogPin1, 255);
-  //analogWrite(tekerlekAnalogPin2, 255);
-   analogWrite(tekerlekAnalogPin3, 255);
-  //analogWrite(tekerlekAnalogPin4, 255);
+  analogWrite(tekerlekSolAnalogPin, 255);
+  analogWrite(tekerlekSagAnalogPin, 255);
 
-  digitalWrite(tekerlekBirA,LOW);
-  digitalWrite(tekerlekBirB,HIGH);
-  // digitalWrite(tekerlekIkiA,HIGH);
-  // digitalWrite(tekerlekIkiB, LOW);
-  digitalWrite(tekerlekUcB,LOW);
-  digitalWrite(tekerlekUcA, HIGH);
-  // digitalWrite(tekerlekDortB,HIGH);
-  // digitalWrite(tekerlekDortA, LOW);
+  digitalWrite(tekerlekSagA,LOW);
+  digitalWrite(tekerlekSagB,HIGH);
+
+  digitalWrite(tekerlekSolB,LOW);
+  digitalWrite(tekerlekSolA, HIGH);
+
 }
 void motorSolaDon()
 {
-  analogWrite(tekerlekAnalogPin1, 230);
-  // analogWrite(tekerlekAnalogPin2, 230 );
-  // analogWrite(tekerlekAnalogPin3, 230);
-  analogWrite(tekerlekAnalogPin4, 230);
+  analogWrite(tekerlekSolAnalogPin, 230);
+  analogWrite(tekerlekSagAnalogPin, 230);
 
-  digitalWrite(tekerlekBirA,HIGH);
-  digitalWrite(tekerlekBirB,LOW);
-  // digitalWrite(tekerlekIkiB,HIGH);
-  // digitalWrite(tekerlekIkiA,LOW);
-  digitalWrite(tekerlekUcB,LOW);
-  digitalWrite(tekerlekUcA, HIGH);
-  // digitalWrite(tekerlekDortB,HIGH);
-  // digitalWrite(tekerlekDortA, LOW);
+  digitalWrite(tekerlekSagA,HIGH);
+  digitalWrite(tekerlekSagB,LOW);
+
+  digitalWrite(tekerlekSolB,LOW);
+  digitalWrite(tekerlekSolA, HIGH);
 }
 void motorSagaDon()
 {
-  analogWrite(tekerlekAnalogPin1, 230);
-  // analogWrite(tekerlekAnalogPin2, 230 );
-  // analogWrite(tekerlekAnalogPin3, 230);
-  analogWrite(tekerlekAnalogPin4, 230);
+  analogWrite(tekerlekSolAnalogPin, 230);
+  analogWrite(tekerlekSagAnalogPin, 230);
 
-  digitalWrite(tekerlekBirA,LOW);
-  digitalWrite(tekerlekBirB,HIGH);
-  // digitalWrite(tekerlekIkiB,HIGH);
-  // digitalWrite(tekerlekIkiA,LOW);
-  digitalWrite(tekerlekUcB,HIGH);
-  digitalWrite(tekerlekUcA, LOW);
-  // digitalWrite(tekerlekDortB,HIGH);
-  // digitalWrite(tekerlekDortA, LOW);
+  digitalWrite(tekerlekSagA,LOW);
+  digitalWrite(tekerlekSagB,HIGH);
+
+  digitalWrite(tekerlekSolB,HIGH);
+  digitalWrite(tekerlekSolA, LOW);
+}
+void motorDebug()
+{
+  delay(1500);
+  motorDurdur();
+  motorIlerle();
+  delay(2000);
+  motorDurdur();
+  motorSagaDon();
+  delay(2000);
+  motorDurdur();
+  motorSolaDon();
+  delay(2000);
+  motorDurdur();
+  motorGeriGit();
+  delay(2000);
 }
