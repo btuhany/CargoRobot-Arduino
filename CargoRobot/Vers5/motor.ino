@@ -9,6 +9,7 @@ void motorPinTanimla()
 
   pinMode(tekerlekSolAnalogPin, OUTPUT);
   pinMode(tekerlekSagAnalogPin, OUTPUT);
+  motorDurdur();
 }
 void motorDurdur()
 {
